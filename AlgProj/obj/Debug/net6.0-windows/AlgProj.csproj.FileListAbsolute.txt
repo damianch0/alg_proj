@@ -1,0 +1,17 @@
+C:\Users\Damian\source\repos\AlgProj\AlgProj\bin\Debug\net6.0-windows\AlgProj.exe
+C:\Users\Damian\source\repos\AlgProj\AlgProj\bin\Debug\net6.0-windows\AlgProj.deps.json
+C:\Users\Damian\source\repos\AlgProj\AlgProj\bin\Debug\net6.0-windows\AlgProj.runtimeconfig.json
+C:\Users\Damian\source\repos\AlgProj\AlgProj\bin\Debug\net6.0-windows\AlgProj.dll
+C:\Users\Damian\source\repos\AlgProj\AlgProj\bin\Debug\net6.0-windows\AlgProj.pdb
+C:\Users\Damian\source\repos\AlgProj\AlgProj\obj\Debug\net6.0-windows\AlgProj.csproj.AssemblyReference.cache
+C:\Users\Damian\source\repos\AlgProj\AlgProj\obj\Debug\net6.0-windows\AlgProj.Form1.resources
+C:\Users\Damian\source\repos\AlgProj\AlgProj\obj\Debug\net6.0-windows\AlgProj.csproj.GenerateResource.cache
+C:\Users\Damian\source\repos\AlgProj\AlgProj\obj\Debug\net6.0-windows\AlgProj.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Damian\source\repos\AlgProj\AlgProj\obj\Debug\net6.0-windows\AlgProj.AssemblyInfoInputs.cache
+C:\Users\Damian\source\repos\AlgProj\AlgProj\obj\Debug\net6.0-windows\AlgProj.AssemblyInfo.cs
+C:\Users\Damian\source\repos\AlgProj\AlgProj\obj\Debug\net6.0-windows\AlgProj.csproj.CoreCompileInputs.cache
+C:\Users\Damian\source\repos\AlgProj\AlgProj\obj\Debug\net6.0-windows\AlgProj.dll
+C:\Users\Damian\source\repos\AlgProj\AlgProj\obj\Debug\net6.0-windows\refint\AlgProj.dll
+C:\Users\Damian\source\repos\AlgProj\AlgProj\obj\Debug\net6.0-windows\AlgProj.pdb
+C:\Users\Damian\source\repos\AlgProj\AlgProj\obj\Debug\net6.0-windows\AlgProj.genruntimeconfig.cache
+C:\Users\Damian\source\repos\AlgProj\AlgProj\obj\Debug\net6.0-windows\ref\AlgProj.dll
