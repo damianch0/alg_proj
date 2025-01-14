@@ -14,11 +14,8 @@ namespace AlgProj
             FormClosing += (s, e) =>
             {
                 var result = MessageBox.Show("Czy chcesz zamkn¹æ programs? ", "Zamknij program!", MessageBoxButtons.YesNo);
-                if (result == DialogResult.Yes)
-                {
-                    // TODO save data
-                }
-                else if (result == DialogResult.No)
+
+                if (result == DialogResult.No)
                 {
                     e.Cancel = true;
                 }
@@ -35,7 +32,9 @@ namespace AlgProj
             var form = new AddDeliveryPointForm();
             if (form.ShowDialog() == DialogResult.OK)
             {
-                deliveryPoints.Add(form.DeliveryPoint());
+                var deliveryPoint = form.DeliveryPoint();
+                deliveryPoints.Add(deliveryPoint);
+                DrawGraph();
             }
             form.Dispose();
         }
@@ -45,6 +44,7 @@ namespace AlgProj
             if (pointsDataGridView.SelectedRows.Count > 0)
             {
                 pointsDataGridView.Rows.RemoveAt(pointsDataGridView.SelectedRows[0].Index);
+                DrawGraph();
             }
         }
 
@@ -60,8 +60,38 @@ namespace AlgProj
                     deliveryPoint.Name = updated.Name;
                     deliveryPoint.Point = updated.Point;
                     deliveryPoints.ResetItem(pointsDataGridView.SelectedRows[0].Index);
+                    DrawGraph();
                 }
             }
+        }
+
+        private void DrawGraph()
+        {
+            var fullGraph = new Graph();
+            var nodes = deliveryPoints.Select(x => new Node(x)).ToList();
+
+            for (int i = 0; i < nodes.Count; i++)
+            {
+                for (int j = 0; j < nodes.Count; j++)
+                {
+                    if (i != j)
+                    {
+                        fullGraph.AddEdge(new Edge(nodes[i], nodes[j]));
+                    }
+                }
+            }
+
+            var minSpaningTree = fullGraph.Kruskal();
+            Helper.DrawGraph(routePictureBox, minSpaningTree);
+            routeRichTextBox.Text = string.Join('\n', minSpaningTree.Edges.Select(e => $"z '{e.Start.DeliveryPoint.Name}' do '{e.End.DeliveryPoint.Name}' {e.Weight:F2} m"));
+            routeRichTextBox.Text += "\n";
+            routeRichTextBox.Text += "--------------------------------\n";
+            routeRichTextBox.Text += $"D³ugoœæ ca³ej trasy: {minSpaningTree.Edges.Sum(x => x.Weight):F2} m";
+        }
+
+        private void zapiszToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Zpisz se");
         }
     }
 }

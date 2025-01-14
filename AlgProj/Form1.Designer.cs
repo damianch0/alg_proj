@@ -31,24 +31,26 @@
             menuStrip1 = new MenuStrip();
             plikToolStripMenuItem = new ToolStripMenuItem();
             zapiszToolStripMenuItem = new ToolStripMenuItem();
-            raportyToolStripMenuItem = new ToolStripMenuItem();
-            raportTrasyToolStripMenuItem = new ToolStripMenuItem();
-            pictureBox1 = new PictureBox();
+            routePictureBox = new PictureBox();
             addPointButton = new Button();
             removePointButton = new Button();
             pointsDataGridView = new DataGridView();
             editPointButton = new Button();
+            routeRichTextBox = new RichTextBox();
+            label1 = new Label();
+            label2 = new Label();
+            label3 = new Label();
             menuStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)routePictureBox).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pointsDataGridView).BeginInit();
             SuspendLayout();
             // 
             // menuStrip1
             // 
-            menuStrip1.Items.AddRange(new ToolStripItem[] { plikToolStripMenuItem, raportyToolStripMenuItem });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { plikToolStripMenuItem });
             menuStrip1.Location = new System.Drawing.Point(0, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(1129, 24);
+            menuStrip1.Size = new Size(979, 24);
             menuStrip1.TabIndex = 0;
             menuStrip1.Text = "menuStrip1";
             // 
@@ -62,36 +64,24 @@
             // zapiszToolStripMenuItem
             // 
             zapiszToolStripMenuItem.Name = "zapiszToolStripMenuItem";
-            zapiszToolStripMenuItem.Size = new Size(107, 22);
-            zapiszToolStripMenuItem.Text = "Zapisz";
+            zapiszToolStripMenuItem.Size = new Size(180, 22);
+            zapiszToolStripMenuItem.Text = "Zapisz trase";
+            zapiszToolStripMenuItem.Click += zapiszToolStripMenuItem_Click;
             // 
-            // raportyToolStripMenuItem
+            // routePictureBox
             // 
-            raportyToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { raportTrasyToolStripMenuItem });
-            raportyToolStripMenuItem.Name = "raportyToolStripMenuItem";
-            raportyToolStripMenuItem.Size = new Size(60, 20);
-            raportyToolStripMenuItem.Text = "Raporty";
-            // 
-            // raportTrasyToolStripMenuItem
-            // 
-            raportTrasyToolStripMenuItem.Name = "raportTrasyToolStripMenuItem";
-            raportTrasyToolStripMenuItem.Size = new Size(137, 22);
-            raportTrasyToolStripMenuItem.Text = "Raport trasy";
-            // 
-            // pictureBox1
-            // 
-            pictureBox1.BorderStyle = BorderStyle.FixedSingle;
-            pictureBox1.Image = Properties.Resources.map_image;
-            pictureBox1.Location = new System.Drawing.Point(717, 57);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(400, 400);
-            pictureBox1.TabIndex = 1;
-            pictureBox1.TabStop = false;
+            routePictureBox.BorderStyle = BorderStyle.FixedSingle;
+            routePictureBox.Image = Properties.Resources.map_image;
+            routePictureBox.Location = new System.Drawing.Point(568, 57);
+            routePictureBox.Name = "routePictureBox";
+            routePictureBox.Size = new Size(400, 400);
+            routePictureBox.TabIndex = 1;
+            routePictureBox.TabStop = false;
             // 
             // addPointButton
             // 
             addPointButton.Image = Properties.Resources.Add_16xMD;
-            addPointButton.Location = new System.Drawing.Point(42, 27);
+            addPointButton.Location = new System.Drawing.Point(199, 27);
             addPointButton.Name = "addPointButton";
             addPointButton.Size = new Size(24, 24);
             addPointButton.TabIndex = 3;
@@ -101,7 +91,7 @@
             // removePointButton
             // 
             removePointButton.Image = Properties.Resources.DeleteTableRow_16x;
-            removePointButton.Location = new System.Drawing.Point(12, 27);
+            removePointButton.Location = new System.Drawing.Point(169, 27);
             removePointButton.Name = "removePointButton";
             removePointButton.Size = new Size(24, 24);
             removePointButton.TabIndex = 4;
@@ -117,12 +107,12 @@
             pointsDataGridView.Name = "pointsDataGridView";
             pointsDataGridView.ReadOnly = true;
             pointsDataGridView.RowTemplate.Height = 25;
-            pointsDataGridView.Size = new Size(290, 400);
+            pointsDataGridView.Size = new Size(241, 400);
             pointsDataGridView.TabIndex = 5;
             // 
             // editPointButton
             // 
-            editPointButton.Location = new System.Drawing.Point(72, 27);
+            editPointButton.Location = new System.Drawing.Point(229, 27);
             editPointButton.Name = "editPointButton";
             editPointButton.Size = new Size(24, 24);
             editPointButton.TabIndex = 6;
@@ -130,23 +120,63 @@
             editPointButton.UseVisualStyleBackColor = true;
             editPointButton.Click += editPointButton_Click;
             // 
+            // routeRichTextBox
+            // 
+            routeRichTextBox.Location = new System.Drawing.Point(270, 57);
+            routeRichTextBox.Name = "routeRichTextBox";
+            routeRichTextBox.ReadOnly = true;
+            routeRichTextBox.Size = new Size(282, 400);
+            routeRichTextBox.TabIndex = 7;
+            routeRichTextBox.Text = "";
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new System.Drawing.Point(270, 32);
+            label1.Name = "label1";
+            label1.Size = new Size(80, 15);
+            label1.TabIndex = 8;
+            label1.Text = "Przebieg trasy";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new System.Drawing.Point(568, 32);
+            label2.Name = "label2";
+            label2.Size = new Size(99, 15);
+            label2.TabIndex = 9;
+            label2.Text = "Wizualizacja trasy";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new System.Drawing.Point(12, 32);
+            label3.Name = "label3";
+            label3.Size = new Size(44, 15);
+            label3.TabIndex = 10;
+            label3.Text = "Punkty";
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1129, 621);
+            ClientSize = new Size(979, 468);
+            Controls.Add(label3);
+            Controls.Add(label2);
+            Controls.Add(label1);
+            Controls.Add(routeRichTextBox);
             Controls.Add(editPointButton);
             Controls.Add(pointsDataGridView);
             Controls.Add(removePointButton);
             Controls.Add(addPointButton);
-            Controls.Add(pictureBox1);
+            Controls.Add(routePictureBox);
             Controls.Add(menuStrip1);
             MainMenuStrip = menuStrip1;
             Name = "Form1";
             Load += Form1_Load;
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)routePictureBox).EndInit();
             ((System.ComponentModel.ISupportInitialize)pointsDataGridView).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -157,12 +187,14 @@
         private MenuStrip menuStrip1;
         private ToolStripMenuItem plikToolStripMenuItem;
         private ToolStripMenuItem zapiszToolStripMenuItem;
-        private ToolStripMenuItem raportyToolStripMenuItem;
-        private ToolStripMenuItem raportTrasyToolStripMenuItem;
-        private PictureBox pictureBox1;
+        private PictureBox routePictureBox;
         private Button addPointButton;
         private Button removePointButton;
         private DataGridView pointsDataGridView;
         private Button editPointButton;
+        private RichTextBox routeRichTextBox;
+        private Label label1;
+        private Label label2;
+        private Label label3;
     }
 }

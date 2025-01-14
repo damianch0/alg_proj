@@ -2,17 +2,14 @@
 {
     public partial class AddDeliveryPointForm : Form
     {
-
-        
-
         public AddDeliveryPointForm(DeliveryPoint? deliveryPoint = null)
         {
             InitializeComponent();
             if (deliveryPoint != null )
             {
-                this.nameTextBox.Text = deliveryPoint.Name;
-                this.xTextBox.Text = deliveryPoint.Point.X.ToString();
-                this.yTextBox.Text = deliveryPoint.Point.Y.ToString();
+                nameTextBox.Text = deliveryPoint.Name;
+                xTextBox.Text = deliveryPoint.Point.X.ToString();
+                yTextBox.Text = deliveryPoint.Point.Y.ToString();
                 Paint += new PaintEventHandler((s, e) => DrawPoint((int)deliveryPoint.Point.X, (int)deliveryPoint.Point.Y));
             }
         }
@@ -38,11 +35,7 @@
 
         private void DrawPoint(int x, int y)
         {
-            var graphics = mapPictureBox.CreateGraphics();
-            var image = mapPictureBox.Image;
-            graphics.Clear(Color.White);
-            graphics.DrawImage(image, 0, 0);
-            graphics.DrawEllipse(Pens.Black, x, y, 10, 10);
+            Helper.DrawPoint(mapPictureBox, x, y);
         }
 
         private bool IsFormValid()
