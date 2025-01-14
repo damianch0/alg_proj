@@ -64,7 +64,7 @@
             // zapiszToolStripMenuItem
             // 
             zapiszToolStripMenuItem.Name = "zapiszToolStripMenuItem";
-            zapiszToolStripMenuItem.Size = new Size(180, 22);
+            zapiszToolStripMenuItem.Size = new Size(135, 22);
             zapiszToolStripMenuItem.Text = "Zapisz trase";
             zapiszToolStripMenuItem.Click += zapiszToolStripMenuItem_Click;
             // 
@@ -173,6 +173,7 @@
             Controls.Add(menuStrip1);
             MainMenuStrip = menuStrip1;
             Name = "Form1";
+            Text = "Kurierex";
             Load += Form1_Load;
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();

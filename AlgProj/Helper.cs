@@ -27,7 +27,20 @@ static class Helper
         var image = pictureBox.Image;
         graphics.Clear(Color.White);
         graphics.DrawImage(image, 0, 0);
-        graphics.DrawGraph(graph);
+
+        Font nodeNameFont = new Font("Arial", 12);
+        Font edgeWeightFont = new Font("Arial", 12);
+        graph.Nodes.ForEach(n => graphics.DrawString(n.DeliveryPoint.Name, nodeNameFont, Brushes.Black, (float)n.DeliveryPoint.Point.X, (float)n.DeliveryPoint.Point.Y));
+        graph.Nodes.ForEach(n => { graphics.DrawPoint((int)n.DeliveryPoint.Point.X, (int)n.DeliveryPoint.Point.Y); });
+
+        // draw edges
+        graph.Edges.ForEach(e =>
+        {
+            var start = e.Start.DeliveryPoint.Point;
+            var end = e.End.DeliveryPoint.Point;
+            graphics.DrawString(e.Weight.ToString("F2"), nodeNameFont, Brushes.Black, (float)((start.X + end.X) / 2), (float)((start.Y + end.Y) / 2));
+            graphics.DrawLine((int)start.X, (int)start.Y, (int)end.X, (int)end.Y);
+        });
     }
 
     public static void DrawPoint(this Graphics source, int x, int y)
@@ -38,19 +51,5 @@ static class Helper
     public static void DrawLine(this Graphics source, int x1, int y1, int x2, int y2)
     {
         source.DrawLine(Pens.Black, x1, y1, x2, y2);
-    }
-
-    public static void DrawGraph(this Graphics source, Graph graph)
-    {
-        // draw nodes
-        graph.Nodes.ForEach(n => { source.DrawPoint((int)n.DeliveryPoint.Point.X, (int)n.DeliveryPoint.Point.Y); });
-
-        // draw edges
-        graph.Edges.ForEach(e =>
-        {
-            var start = e.Start.DeliveryPoint.Point;
-            var end = e.End.DeliveryPoint.Point;
-            source.DrawLine((int)start.X, (int)start.Y, (int)end.X, (int)end.Y);
-        });
     }
 }

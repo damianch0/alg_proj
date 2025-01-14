@@ -13,7 +13,7 @@ namespace AlgProj
             pointsDataGridView.DataSource = deliveryPoints;
             FormClosing += (s, e) =>
             {
-                var result = MessageBox.Show("Czy chcesz zamkn¹æ programs? ", "Zamknij program!", MessageBoxButtons.YesNo);
+                var result = MessageBox.Show("Czy chcesz zamkn¹æ program? ", "Zamknij program!", MessageBoxButtons.YesNo);
 
                 if (result == DialogResult.No)
                 {
@@ -67,6 +67,10 @@ namespace AlgProj
 
         private void DrawGraph()
         {
+            if (deliveryPoints.Count < 2)
+            {
+                return;
+            }
             var fullGraph = new Graph();
             var nodes = deliveryPoints.Select(x => new Node(x)).ToList();
 
@@ -91,7 +95,15 @@ namespace AlgProj
 
         private void zapiszToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Zpisz se");
+            if (!string.IsNullOrEmpty(routeRichTextBox.Text))
+            {
+                SaveFileDialog saveFileDialog = new SaveFileDialog();
+                saveFileDialog.Filter = "txt files (*.txt)|*.txt";
+                if (saveFileDialog.ShowDialog() == DialogResult.OK && !string.IsNullOrEmpty(saveFileDialog.FileName))
+                {
+                    File.WriteAllText(saveFileDialog.FileName, routeRichTextBox.Text);
+                }
+            }
         }
     }
 }
